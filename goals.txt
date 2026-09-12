@@ -1,0 +1,56 @@
+Ascii maze game inspired by Gear_U on youtube.com
+
+The game contains the following:
+    - a dynamic maze map (randomized depth-first search algorithm)
+    - title screen
+    - character selection
+    - a player placed on a starting position
+    - an enemy placed on a starting position
+    - a level counter
+    - game over screen
+    TBD: top scores?
+         lives?
+
+* for research:
+
+1. enemy pathfinding
+2. better maze generation
+
+╔╗╚╝═║╠╣╦╩╬
+
+╔══════════════════╗
+║                  ║
+║                  ║
+║                  ║
+║                  ║
+║                  ║
+║                  ║
+║                  ║
+╚══════════════════╝
+
+
+
+game ->
+    // contains level counter
+    * scores?
+    * lives?
+    * level
+
+        map (opaque)->
+            // contains map draw function/s
+            // contains maze generation function/s
+            * contains default map size
+            * contains maze mask
+
+                assets (opaque) // contains map ascii string
+                      * contain player ascii icon
+                      * contain enemy ascii icon
+                      * contain exit ascii icon
+
+                enemy (opaque) * contain map maze data
+                player (opaque) * contain map maze data
+                exit (opaque)
+
+
+    -> terminal // contains terminal colors
+                // contains screen functions

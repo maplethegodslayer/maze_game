@@ -1,0 +1,44 @@
+[
+  {
+    "label": "Compile C (single file)",
+    "command": "gcc",
+    "args": [
+      "-g",
+      "${ZED_FILE}",
+      "-o",
+      "${ZED_STEM}"
+    ],
+    "reveal": "always",
+    "reveal_target": "dock"
+  },
+  {
+    "label": "Compile C (multiple files)",
+    "shell": {
+      "program": "/bin/sh"
+    },
+    "cwd": "${ZED_WORKTREE_ROOT}",
+    "command": "gcc -g *.c -o main",
+    "reveal": "always",
+    "reveal_target": "dock"
+  },
+  {
+    "label": "Compile and Run C (single file)",
+    "shell": {
+      "program": "/bin/sh"
+    },
+    "cwd": "${ZED_WORKTREE_ROOT}",
+    "command": "gcc -g \"${ZED_FILE}\" -o \"${ZED_STEM}\" && \"./${ZED_STEM}\"",
+    "reveal": "always",
+    "reveal_target": "dock"
+  },
+  {
+    "label": "Compile and Run C (multi file)",
+    "shell": {
+      "program": "/bin/sh"
+    },
+    "cwd": "${ZED_WORKTREE_ROOT}",
+    "command": "gcc -g *.c -o main && ./main",
+    "reveal": "always",
+    "reveal_target": "dock"
+  }
+]
