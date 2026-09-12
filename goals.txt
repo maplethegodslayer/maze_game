@@ -9,7 +9,8 @@ The game contains the following:
     - a level counter
     - game over screen
     TBD: top scores?
-         lives?
+         - lives?
+         - restart game on same level?
 
 * for research:
 
@@ -28,6 +29,7 @@ The game contains the following:
 ║                  ║
 ╚══════════════════╝
 
+TODO PLAN: create the map border and change the four corners top fit the map.
 
 
 game ->
@@ -36,20 +38,21 @@ game ->
     * lives?
     * level
 
-        map (opaque)->
+        map ->
             // contains map draw function/s
+            // contains sub function to draw border map
             // contains maze generation function/s
             * contains default map size
             * contains maze mask
 
-                assets (opaque) // contains map ascii string
+                assets // contains map ascii string
                       * contain player ascii icon
                       * contain enemy ascii icon
                       * contain exit ascii icon
 
-                enemy (opaque) * contain map maze data
-                player (opaque) * contain map maze data
-                exit (opaque)
+                enemy  * contain map maze data
+                player  * contain map maze data
+                exit
 
 
     -> terminal // contains terminal colors

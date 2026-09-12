@@ -1,0 +1,5 @@
+# Ignore the Zed editor configuration directory
+.zed/
+
+# Ignore the compiled binaries or build output directory
+bin/

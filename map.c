@@ -5,7 +5,7 @@
 
 struct MapData{
     char** map;
-//    int** mazeMask;
+//    int** mazeMask;  // for future use? i maybe? still reading about this..
     int mapSizeX;
     int mapSizeY;
 

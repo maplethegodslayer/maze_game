@@ -1,13 +1,11 @@
 [
   {
     "label": "Compile C (single file)",
-    "command": "gcc",
-    "args": [
-      "-g",
-      "${ZED_FILE}",
-      "-o",
-      "${ZED_STEM}"
-    ],
+    "shell": {
+      "program": "/bin/sh"
+    },
+    "cwd": "${ZED_WORKTREE_ROOT}",
+    "command": "mkdir -p bin && gcc -g \"${ZED_FILE}\" -o bin/\"${ZED_STEM}\"",
     "reveal": "always",
     "reveal_target": "dock"
   },
@@ -17,7 +15,7 @@
       "program": "/bin/sh"
     },
     "cwd": "${ZED_WORKTREE_ROOT}",
-    "command": "gcc -g *.c -o main",
+    "command": "mkdir -p bin && gcc -g *.c -o bin/main",
     "reveal": "always",
     "reveal_target": "dock"
   },
@@ -27,7 +25,7 @@
       "program": "/bin/sh"
     },
     "cwd": "${ZED_WORKTREE_ROOT}",
-    "command": "gcc -g \"${ZED_FILE}\" -o \"${ZED_STEM}\" && \"./${ZED_STEM}\"",
+    "command": "mkdir -p bin && gcc -g \"${ZED_FILE}\" -o bin/\"${ZED_STEM}\" && ./bin/\"${ZED_STEM}\"",
     "reveal": "always",
     "reveal_target": "dock"
   },
@@ -37,7 +35,7 @@
       "program": "/bin/sh"
     },
     "cwd": "${ZED_WORKTREE_ROOT}",
-    "command": "gcc -g *.c -o main && ./main",
+    "command": "mkdir -p bin && gcc -g *.c -o bin/main && ./bin/main",
     "reveal": "always",
     "reveal_target": "dock"
   }
