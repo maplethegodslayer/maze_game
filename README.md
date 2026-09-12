@@ -12,11 +12,13 @@ I'm a total beginner so I am open to all comments, (good or the bad.)
 Curious to know what are the things i need to work on.
 </p>
 
-:construction: <sub>in progress...</sub>
+:construction: <sub> under construction...</sub>
 ## Acknowledgements
-<p align="center">
- [Gear_U](https://www.youtube.com/@Gear_U-d6h) Check his channel out.
- [Bro Code](https://www.youtube.com/@BroCodez) Learned c with his channel.
+
+ - [Gear_U](https://www.youtube.com/@Gear_U-d6h) Check his channel out.
+ - [Bro Code](https://www.youtube.com/@BroCodez) Learned c with his channel.
+ 
+ <p align="center">
 
 ````plaintext
   /$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$ /$$$$$$                                                  
@@ -32,19 +34,21 @@ Curious to know what are the things i need to work on.
                                                                                                 
                                                                                                 
                                                                                                 
-  /$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$                                                     
- /$$__  $$ |____  $$| $$_  $$_  $$ /$$__  $$                                                    
-| $$  \ $$  /$$$$$$$| $$ \ $$ \ $$| $$$$$$$$                                                    
-| $$  | $$ /$$__  $$| $$ | $$ | $$| $$_____/                                                    
-|  $$$$$$$|  $$$$$$$| $$ | $$ | $$|  $$$$$$$                                                    
- \____  $$ \_______/|__/ |__/ |__/ \_______/                                                    
- /$$  \ $$                                                                                      
-|  $$$$$$/                                                                                      
- \______/                                                                                       
+                          /$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$                                                     
+                        /$$__  $$ |____  $$| $$_  $$_  $$ /$$__  $$                                                    
+                        | $$  \ $$  /$$$$$$$| $$ \ $$ \ $$| $$$$$$$$                                                    
+                        | $$  | $$ /$$__  $$| $$ | $$ | $$| $$_____/                                                    
+                        |  $$$$$$$|  $$$$$$$| $$ | $$ | $$|  $$$$$$$                                                    
+                        \____  $$ \_______/|__/ |__/ |__/ \_______/                                                    
+                        /$$  \ $$                                                                                      
+                        |  $$$$$$/                                                                                      
+                        \______/                                                                                       
 
 ````
 </p>
+
 ## Tools used:
+
 <p align="center">
 - Github
 - [Zed](https://zed.dev)
