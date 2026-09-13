@@ -9,10 +9,10 @@ struct GameAssets;
 struct GameEntities;
 struct GameData;
 
-void drawMap();
 MapData* createMap(int,int, struct GameEntities*, struct  GameEntities* , struct  GameEntities* );
-static void generateMaze(int, int);
-void printMap(MapData*);
+static void generateMaze(MapData* md);
+void drawMap(MapData* md);
+void drawMazeMask(MapData* md);
 void removeMapData(MapData*);
 
 #endif

@@ -9,8 +9,8 @@
 #include <time.h>
 
 //set game defaults here
-#define LEVEL 1
-#define MAPSIZE 10
+#define DEFAULT_LEVEL 1
+#define DEFAULT_MAPSIZE 10
 
 struct GameData{
     int level;
@@ -19,6 +19,8 @@ struct GameData{
 };
 
 int main(int argc, char *argv[]) {
+
+    generateRandomSeed();
 
     char chInput, chConfirm;
     bool outerloop = true;
@@ -73,25 +75,23 @@ return 0;
 }
 
 void initGame(char* pIcon){
-    generateRandomSeed();
+
     GameAssets* ga = createGameAssets();
     GameData* gd = malloc(sizeof(GameData));
-        gd->level = LEVEL;
-    int x, y;
-    x = zeroToTenRNG(MAPSIZE);
-    y = zeroToTenRNG(MAPSIZE);
-    GameEntities* player = createGameEntities(1, 2, *pIcon);
-    GameEntities* enemy = createGameEntities(9, 9, '!');
-    GameEntities* exit = createGameEntities(3, 3, '$');
-    char* mapString = getBoxString(ga);
-    //int playerXPos = zeroToTenRNG(MAPSIZE);
+        gd->level = DEFAULT_LEVEL;
+
+    GameEntities* player = createGameEntities(mapBasedRNG(DEFAULT_MAPSIZE), mapBasedRNG(DEFAULT_MAPSIZE), *pIcon);
+    GameEntities* enemy = createGameEntities(mapBasedRNG(DEFAULT_MAPSIZE),mapBasedRNG(DEFAULT_MAPSIZE), '!');
+    GameEntities* exit = createGameEntities(mapBasedRNG(DEFAULT_MAPSIZE), mapBasedRNG(DEFAULT_MAPSIZE), '$');
+
     int mapsizeX;
     int mapsizeY;
-    mapsizeX = mapsizeY = MAPSIZE;
+    mapsizeX = mapsizeY = DEFAULT_MAPSIZE;
 
     MapData* md = createMap(mapsizeX, mapsizeY, player, enemy, exit);
 
-    printMap(md);
+    //drawMap(md);    // commented it out for testing. trying to make maze generation to work first.
+    drawMazeMask(md);
 
     removeGameAssets(ga);
     removeGameEntities(player);
@@ -104,8 +104,12 @@ void generateRandomSeed(){
     srand(time(NULL));
 }
 
-int zeroToTenRNG(int number){
-    return rand() % number;
+int mapBasedRNG(int number){
+    return rand() % (number - 1); // randomizes from 0 to N-1
+}
+
+int directionBasedRNG(void){
+    return rand() % 5; // randomizes 0 - 4
 }
 
 void removeGameData(GameData* gd){

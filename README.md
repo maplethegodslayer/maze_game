@@ -21,6 +21,7 @@ Curious to know what are the things i need to work on.
  <p align="center">
 
 ````plaintext
+
   /$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$ /$$$$$$
  /$$__  $$ /$$__  $$ /$$__  $$|_  $$_/|_  $$_/
 | $$  \ $$| $$  \__/| $$  \__/  | $$    | $$         /$$$$$$/$$$$   /$$$$$$  /$$$$$$$$  /$$$$$$
@@ -48,4 +49,3 @@ Curious to know what are the things i need to work on.
 - Github
 - [Zed](https://zed.dev)
 - [Ascii Art Generator](https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type+Something+&x=none&v=4&h=4&w=80&we=false)
-

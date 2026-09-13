@@ -4,8 +4,9 @@
 typedef struct GameData GameData;
 
 
-void generateRandomSeed();
-int zeroToTenRNG(int number);
+void generateRandomSeed(void);
+int mapBasedRNG(int);
+int directionBasedRNG(void);
 void initGame(char*);
 void removeGameData(GameData*);
 #endif
