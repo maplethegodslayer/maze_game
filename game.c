@@ -90,7 +90,10 @@ void initGame(char* pIcon){
 
     MapData* md = createMap(mapsizeX, mapsizeY, player, enemy, exit);
 
-    //drawMap(md);    // commented it out for testing. trying to make maze generation to work first.
+    drawMap(md);    // commented it out for testing. trying to make maze generation to work first.
+    printf("\n");
+    generateMaze(md);
+    printf("\n");
     drawMazeMask(md);
 
     removeGameAssets(ga);

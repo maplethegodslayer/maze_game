@@ -69,68 +69,44 @@ MapData* createMap(int mapSizeX,int mapSizeY, GameEntities* player, GameEntities
 
 void generateMaze(MapData *md){
     //establish starting position first
+    //maybe do it on the game code instead?
     int x = mapBasedRNG(md->mapSizeX);
     int y = mapBasedRNG(md->mapSizeY);
 
-    int totalMapSize = md->mapSizeX * md->mapSizeY;
-    int moveBuffer[totalMapSize];   //contains directions made
+    int totalMapSize = md->mapSizeX * md->mapSizeY; // total amount of cells in the table
+    int* moveBuffer = calloc(totalMapSize, sizeof(int));  //contains directions made
+    moveBuffer[0] = -1;         //initialize to illegal direction
     int moveCounter = 0;
-    int positionBuffer[md->mapSizeX][md->mapSizeY];  // contains current point or (x,y)
+    int positionCounter = 0;
+    int* positionBufferX = calloc(totalMapSize, sizeof(int));
+    int* positionBufferY = calloc(totalMapSize, sizeof(int));
+
+
 
     enum directions { UP, DOWN, LEFT, RIGHT };
-    enum cellStatus { UNVISITED, ENTITY, VISITED }; // all entities are ignored and marked as visited by default
-                                                    // making sure that entities are not blocked
+    enum cellStatus { UNVISITED, VISITED }; // my approach is wrong. better to just simply generate the freaking maze
+                                            // first before doing fancy stuff and cleaning up code. what is a node?
 
-        while(totalMapSize>=0){ //total cells
-            // starting position: check position, store it on the buffer, mark it as visited then move to next position
-            if(md->mazeMask[x][y] == UNVISITED || md->mazeMask[x][y] == ENTITY){
-                md->mazeMask[x][y] = VISITED;
-                switch(directionBasedRNG()){
-                    case UP:
-                        if(y>0){
-                            y--;
-                            if(moveCounter>=0){
-                                moveBuffer[moveCounter] = UP;
-                            }
-                        }
-                        break;
-                    case DOWN:
-                        if(y<md->mapSizeY){
-                            y++;
-                            if(moveCounter>=0){
-                                moveBuffer[moveCounter] = DOWN;
-                            }
+        positionBufferX[positionCounter] = 0;
+        positionBufferY[positionCounter] = 0;
+        moveBuffer[moveCounter] = 0;
+        // starting position: check position, store it on the buffer, mark it as visited then move to next position
+        // that's the plan. for now, at least
+        printf("at point: %i at move: %i pos x: %i pos y: %i mapSize: %i\n", positionCounter, moveBuffer[moveCounter], positionBufferX[positionCounter], positionBufferY[positionCounter], totalMapSize);
+        positionCounter++;
+        moveCounter++;
+         while(totalMapSize > 0){
 
-                        }
-                        break;
-                    case LEFT:
-                        if(x>0){
-                            x--;
-                            if(moveCounter>=0){
-                                moveBuffer[moveCounter] = LEFT;
-                            }
+            positionBufferX[positionCounter] = positionBufferX[positionCounter - 1] + 1;
+            positionBufferY[positionCounter] = positionBufferY[positionCounter - 1] + 1;
+            moveBuffer[moveCounter] = moveBuffer[moveCounter - 1] + 1;
+            printf("at point: %i at move: %i pos x: %i pos y: %i mapSize: %i\n", positionCounter, moveBuffer[moveCounter], positionBufferX[positionCounter], positionBufferY[positionCounter], totalMapSize);
 
-                        }
-                        break;
-                    case RIGHT:
-                        if(x<md->mapSizeX){
-                            x++;
-                            if(moveCounter>=0){
-                                moveBuffer[moveCounter] = RIGHT;
-                            }
-
-                        }
-                        break;
-                }
-            }
+            positionCounter++;
+            moveCounter++;
             totalMapSize--;
+
         }
-
-
-
-
-
-
 
 }
 
