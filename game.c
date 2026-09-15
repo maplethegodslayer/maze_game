@@ -4,7 +4,7 @@
 #include "map.h"
 
 #include <stdio.h>
-#include <stdbool.h>
+//#include <stdbool.h>
 #include <stdlib.h>
 #include <time.h>
 
@@ -21,7 +21,13 @@ struct GameData{
 int main(int argc, char *argv[]) {
 
     generateRandomSeed();
+    title();
+    setupGame();
 
+return 0;
+}
+
+void setupGame(void){
     char chInput, chConfirm;
     bool outerloop = true;
     bool innerloop = true;
@@ -30,7 +36,6 @@ int main(int argc, char *argv[]) {
             printf(FOREGROUND_BLUE "Enter your character ");
             printf(FOREGROUND_RED "(cannot be ! or $): " FOREGROUND_GREEN);
             scanf(" %c", &chInput);
-            fflush(stdin);
 
                 switch(chInput){
                     case '!':
@@ -70,8 +75,6 @@ int main(int argc, char *argv[]) {
                     break;
                 }
         }
-
-return 0;
 }
 
 void initGame(char* pIcon){
@@ -89,21 +92,63 @@ void initGame(char* pIcon){
     mapsizeX = mapsizeY = DEFAULT_MAPSIZE;
 
     MapData* md = createMap(mapsizeX, mapsizeY, player, enemy, exit);
+    createMazeMask(md);
 
-    drawMap(md);    // commented it out for testing. trying to make maze generation to work first.
-    printf("\n");
-    generateMaze(md);
-    printf("\n");
+    drawMap(md);
     drawMazeMask(md);
+    printf("\n");
+    //╔╗╚╝═║╠╣╦╩╬
+
 
     removeGameAssets(ga);
     removeGameEntities(player);
     removeGameData(gd);
+    removeMazeMask(md);
+    removeMap(md);
     removeMapData(md);
+}
+
+void title(void){
+    char a;
+clearAndResetScreen();
+
+printf("╔═══════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\n");
+printf("║\t\t\t\t\t\t\t\t\t\t\t\t\t\t║\n");
+printf("║\t\t\t\t\t\t\t\t\t\t\t\t\t\t║\n");
+printf("║\t\t\t\t\t\t\t\t\t\t\t\t\t\t║\n");
+printf("║\t\t\t\t    /$$$$$$                      /$$ /$$\t\t\t\t\t║\n");
+printf("║\t\t\t\t   /$$__  $$                    |__/|__/\t\t\t\t\t║\n");
+printf("║\t\t\t\t  | $$  \\ $$  /$$$$$$$  /$$$$$$$ /$$ /$$\t\t\t\t\t║\n");
+printf("║\t\t\t\t  | $$$$$$$$ /$$_____/ /$$_____/| $$| $$\t\t\t\t\t║\n");
+printf("║\t\t\t\t  | $$__  $$|  $$$$$$ | $$      | $$| $$\t\t\t\t\t║\n");
+printf("║\t\t\t\t  | $$  | $$ \\____  $$| $$      | $$| $$\t\t\t\t\t║\n");
+printf("║\t\t\t\t  | $$  | $$ /$$$$$$$/|  $$$$$$$| $$| $$\t\t\t\t\t║\n");
+printf("║\t\t\t\t  |__/  |__/|_______/  \\_______/|__/|__/\t\t\t\t\t║\n");
+printf("║\t\t\t\t\t\t\t\t\t\t\t\t\t\t║\n");
+printf("║\t   /$$      /$$\t\t\t\t\t\t\t\t\t\t\t\t║\n");
+printf("║\t  | $$$    /$$$\t\t\t\t\t\t\t\t\t\t\t\t║\n");
+printf("║\t  | $$$$  /$$$$  /$$$$$$  /$$$$$$$$  /$$$$$$         /$$$$$$   /$$$$$$  /$$$$$$/$$$$   /$$$$$$  \t║\n");
+printf("║\t  | $$ $$/$$ $$ |____  $$|____ /$$/ /$$__  $$       /$$__  $$ |____  $$| $$_  $$_  $$ /$$__  $$  \t║\n");
+printf("║\t  | $$  $$$| $$  /$$$$$$$   /$$$$/ | $$$$$$$$      | $$  \\ $$  /$$$$$$$| $$ \\ $$ \\ $$| $$$$$$$$  \t║\n");
+printf("║\t  | $$ \\ $ | $$ /$$__  $$  /$$__/  | $$_____/      | $$  | $$ /$$__  $$| $$ | $$ | $$| $$_____/\t\t║\n");
+printf("║\t  | $$ \\/  | $$|  $$$$$$$ /$$$$$$$$|  $$$$$$$      |  $$$$$$$|  $$$$$$$| $$ | $$ | $$|  $$$$$$$\t\t║\n");
+printf("║\t  |__/     |__/ \\_______/|________/ \\_______/       \\____  $$\\_______/|__/ |__/ |__/ \\_______/\t\t║\n");
+printf("║\t                                                    /$$   \\ $$\t\t\t\t\t\t║\n");
+printf("║\t                                                   |  $$$$$$/\t\t\t\t\t\t║\n");
+printf("║\t                                                    \\______/\t\t\t\t\t\t║\n");
+printf("║\t\t\t\t\t\t\t\t\t\t\t\t\t\t║\n");
+printf("║\t\t\t\t\t\t\t\t\t\t\t\t\t\t║\n");
+printf("║\t\t\t\t\t\t\t\t\t\t\t\t\t\t║\n");
+printf("╚═══════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\n");
+scanf(" %c", &a);
+clearAndResetScreen();
+}
+
+void gameOver(void){
 
 }
 
-void generateRandomSeed(){
+void generateRandomSeed(void){
     srand(time(NULL));
 }
 
@@ -113,6 +158,14 @@ int mapBasedRNG(int number){
 
 int directionBasedRNG(void){
     return rand() % 5; // randomizes 0 - 4
+}
+
+bool isOdd(int number){
+    if(number & 1){
+        return true;
+    } else{
+        return false;
+    }
 }
 
 void removeGameData(GameData* gd){

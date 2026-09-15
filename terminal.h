@@ -13,7 +13,6 @@
 #define FOREGROUND_CYAN "\e[0;36m"
 #define FOREGROUND_PURPLE "\e[46m"
 
-
 #define BACKGROUND_BLACK "\e[40m"
 #define BACKGROUND_WHITE "\e[47m"
 #define BACKGROUND_RED "\e[41m"

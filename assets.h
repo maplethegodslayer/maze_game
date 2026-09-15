@@ -4,8 +4,6 @@
 typedef struct GameAssets GameAssets;
 typedef struct GameEntities GameEntities;
 
-
-
 //forward declare
 struct MapData;
 
